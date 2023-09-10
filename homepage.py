@@ -10,6 +10,12 @@ st.markdown('Example toy model to classify iris flowers. based on their \
              sepal/petal and length/width.')
 
 
+# with st.sidebar:
+
+
+# tab1, tab2 = st.tabs(["Features", "Feature Description"])
+
+# with tab1:
 st.header("Plant Features")
 col1, col2 = st.columns(2)
 
@@ -23,13 +29,17 @@ with col2:
     petal_l = st.slider('Petal lenght (cm)', 1.0, 7.0, 1.5)
     petal_w = st.slider('Petal width (cm)', 0.1, 2.5, 0.5)
 
-
+# with tab2:
 image = Image.open("data/sepal-petal.jpg")
 st.image(image)
 
 st.text('')
-if st.button("Predict type of Iris"):
+if st.button("Predict type of Iris",
+            #  help = "just a button!",
+            #  disabled=True
+             ):
     result = predict(
         np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
     st.text(result[0])
+    st.info(f"classification result: {result[0]}")
 
